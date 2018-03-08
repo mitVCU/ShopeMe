@@ -14,6 +14,8 @@
 		418FB171204FE61C00BD91B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 418FB16F204FE61C00BD91B3 /* LaunchScreen.storyboard */; };
 		418FB17C204FE61C00BD91B3 /* ShopeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418FB17B204FE61C00BD91B3 /* ShopeMeTests.swift */; };
 		418FB187204FE61D00BD91B3 /* ShopeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418FB186204FE61D00BD91B3 /* ShopeMeUITests.swift */; };
+		418FB195204FE97E00BD91B3 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418FB194204FE97E00BD91B3 /* CategoryCell.swift */; };
+		41E18F9A2050666D00BF76C8 /* Miraculous&Christmas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41E18F992050666D00BF76C8 /* Miraculous&Christmas.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		418FB182204FE61D00BD91B3 /* ShopeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopeMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		418FB186204FE61D00BD91B3 /* ShopeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopeMeUITests.swift; sourceTree = "<group>"; };
 		418FB188204FE61D00BD91B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		418FB194204FE97E00BD91B3 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		41E18F992050666D00BF76C8 /* Miraculous&Christmas.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Miraculous&Christmas.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		418FB15A204FE61C00BD91B3 = {
 			isa = PBXGroup;
 			children = (
+				41E18F962050661C00BF76C8 /* Font */,
 				418FB165204FE61C00BD91B3 /* ShopeMe */,
 				418FB17A204FE61C00BD91B3 /* ShopeMeTests */,
 				418FB185204FE61D00BD91B3 /* ShopeMeUITests */,
@@ -103,6 +108,7 @@
 				418FB16D204FE61C00BD91B3 /* Assets.xcassets */,
 				418FB16F204FE61C00BD91B3 /* LaunchScreen.storyboard */,
 				418FB172204FE61C00BD91B3 /* Info.plist */,
+				418FB194204FE97E00BD91B3 /* CategoryCell.swift */,
 			);
 			path = ShopeMe;
 			sourceTree = "<group>";
@@ -123,6 +129,14 @@
 				418FB188204FE61D00BD91B3 /* Info.plist */,
 			);
 			path = ShopeMeUITests;
+			sourceTree = "<group>";
+		};
+		41E18F962050661C00BF76C8 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				41E18F992050666D00BF76C8 /* Miraculous&Christmas.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41E18F9A2050666D00BF76C8 /* Miraculous&Christmas.ttf in Resources */,
 				418FB171204FE61C00BD91B3 /* LaunchScreen.storyboard in Resources */,
 				418FB16E204FE61C00BD91B3 /* Assets.xcassets in Resources */,
 				418FB16C204FE61C00BD91B3 /* Main.storyboard in Resources */,
@@ -261,6 +276,7 @@
 			files = (
 				418FB169204FE61C00BD91B3 /* ViewController.swift in Sources */,
 				418FB167204FE61C00BD91B3 /* AppDelegate.swift in Sources */,
+				418FB195204FE97E00BD91B3 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
