@@ -27,8 +27,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         UIImage(named: "Christmas Trees")
     ]
     
-    var cart = [String]()
-    
+    var recentOrders = [ShoppingItem]()
+    var cart = [ShoppingItem]()
+    var decorations = [ShoppingItem]()
+    var lights = [ShoppingItem]()
+    var Desserts = [ShoppingItem]()
+    var clothing = [ShoppingItem]()
+    var candy = [ShoppingItem]()
+    var presents = [ShoppingItem]()
+    var drinks = [ShoppingItem]()
+    var xMasTree = [ShoppingItem]()
     
     override func viewDidLoad() {
         collectionView.delegate = self
@@ -38,7 +46,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        cart.append(ShoppingItem(img: UIImage(named: "Candy")!, nam: "candy", pric: 1.49, desc: "really sweet"))
+        cart.append(ShoppingItem(img: UIImage(named: "017-nature")!, nam: "Snow Man", pric: 11.49, desc: "Cool dude"))
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return categories.count
@@ -55,11 +66,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "toTableView", sender: self)
+    }
     
-    
-        
-    
-    
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ShoppingItemsTVC {
+            destination.items = cart
+        }
+    }
 }//end of ViewController
 
