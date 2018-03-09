@@ -14,11 +14,16 @@ class ShoppingItemCell: UITableViewCell {
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var itemDesc: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
-    @IBOutlet weak var addItemBtn: UIButton!
+    @IBOutlet weak var addItem: UIButton!
+    var yourobj : (() -> Void)? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    @IBAction func onClick(_ sender: UIButton) {
+        if let onClick = self.yourobj
+        {
+            onClick()
+        }
+    }
 }

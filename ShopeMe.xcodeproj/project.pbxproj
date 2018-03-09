@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4110B92F205241A900C11C02 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4110B92E205241A900C11C02 /* MainNavigationController.swift */; };
 		418FB167204FE61C00BD91B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418FB166204FE61C00BD91B3 /* AppDelegate.swift */; };
 		418FB169204FE61C00BD91B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418FB168204FE61C00BD91B3 /* ViewController.swift */; };
 		418FB16C204FE61C00BD91B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 418FB16A204FE61C00BD91B3 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4110B92E205241A900C11C02 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		418FB163204FE61C00BD91B3 /* ShopeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		418FB166204FE61C00BD91B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		418FB168204FE61C00BD91B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				41E18FAF2051255700BF76C8 /* ShoppingItemsTVC.swift */,
 				41E18FB12051284400BF76C8 /* ShoppingItem.swift */,
 				41E18FB3205130F600BF76C8 /* ShoppingItemCell.swift */,
+				4110B92E205241A900C11C02 /* MainNavigationController.swift */,
 			);
 			path = ShopeMe;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				41E18FB22051284400BF76C8 /* ShoppingItem.swift in Sources */,
 				418FB169204FE61C00BD91B3 /* ViewController.swift in Sources */,
 				41E18FB02051255700BF76C8 /* ShoppingItemsTVC.swift in Sources */,
+				4110B92F205241A900C11C02 /* MainNavigationController.swift in Sources */,
 				418FB167204FE61C00BD91B3 /* AppDelegate.swift in Sources */,
 				418FB195204FE97E00BD91B3 /* CategoryCell.swift in Sources */,
 			);

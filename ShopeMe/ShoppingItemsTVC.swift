@@ -7,13 +7,18 @@
 //
 
 import UIKit
+protocol ShoppingItemsTVCDelegate {
+    func finishPassing(cart1: Array<ShoppingItem>?)
+}
 
 class ShoppingItemsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
     var items : Array<ShoppingItem> = []
-    
+    var cart: Array<ShoppingItem> = []
+    var delegate: ShoppingItemsTVCDelegate?
+
     
     override func viewDidLoad() {
         tableView.delegate = self
@@ -27,7 +32,7 @@ class ShoppingItemsTVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("\(items.count) here")
+        print("\(items.count) :item Count")
         return items.count
     }
     
@@ -37,10 +42,17 @@ class ShoppingItemsTVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.itemImage.image = items[indexPath.row].itemImage
         cell.itemDesc.text = items[indexPath.row].itemDescription
         cell.itemPrice.text = "$\(items[indexPath.row].itemPrice)"
+        cell.itemDesc.lineBreakMode = NSLineBreakMode.byWordWrapping
+        cell.itemDesc.numberOfLines = 3
+        cell.yourobj = {
+            self.cart.append(self.items[indexPath.row])
+            print("\(self.cart.count) here")
+            self.delegate?.finishPassing(cart1: self.cart)
+        }
+        
+
         return cell
     }
-    
-    
     
 
     /*
