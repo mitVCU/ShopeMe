@@ -13,6 +13,8 @@ protocol ShoppingItemsTVCDelegate {
 
 class ShoppingItemsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var cartCount: UILabel!
+    @IBOutlet weak var cartBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var items : Array<ShoppingItem> = []
@@ -23,8 +25,10 @@ class ShoppingItemsTVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
+        cartCount.text="\(cart.count)"
         super.viewDidLoad()
         }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -48,12 +52,23 @@ class ShoppingItemsTVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.cart.append(self.items[indexPath.row])
             print("\(self.cart.count) here")
             self.delegate?.finishPassing(cart1: self.cart)
+            self.cartCount.text = "\(self.cart.count)"
         }
         
 
         return cell
     }
+ 
+    @IBAction func onClickCart(_ sender: UIButton) {
+        performSegue(withIdentifier: "cartToCart", sender: nil)
+    }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? CartTVC{
+            destination.cart = cart
+        }
+    }
 
     /*
     // MARK: - Navigation

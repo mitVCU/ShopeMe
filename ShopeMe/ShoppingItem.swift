@@ -14,11 +14,13 @@ class ShoppingItem {
     var itemImage: UIImage
     var itemPrice: Double
     var itemDescription: String
+    var itemCategory: String
     
-    init(img:UIImage, nam:String, pric:Double, desc:String) {
+    init(img:UIImage, nam:String, pric:Double, desc:String, cat: String) {
         itemPrice = pric
         itemName = nam
         itemImage = img
         itemDescription = desc
+        itemCategory = cat
     }
 }
