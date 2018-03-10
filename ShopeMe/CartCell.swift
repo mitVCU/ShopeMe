@@ -9,16 +9,20 @@
 import UIKit
 
 class CartCell: UITableViewCell {
-
+    
+    @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var itemName: UILabel!
+    @IBOutlet weak var subTotal: UILabel!
+    @IBOutlet weak var quantity: UILabel!
+    @IBOutlet weak var addItem: UIButton!
+    @IBOutlet weak var deleteItem: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
 
-        // Configure the view for the selected state
-    }
-
+    
 }

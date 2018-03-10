@@ -22,15 +22,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var drinks = [ShoppingItem]()
     var xMasTree = [ShoppingItem]()
     var lights = [ShoppingItem]()
+
     var categories = [category]()
-    
+    var cartDictionary: [String: Array<ShoppingItem>] = [:]
+
+
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.navigationItem.rightBarButtonItem = nil
-        
+
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view, typically from a nib.
         xMasTree.append(ShoppingItem(img: UIImage(named: "tree1")!, nam: "Natural Tree", pric: 1.49, desc: "Natural tree is clean and fresh from the forest with no decorations", cat: "Christmas Tree"))
         xMasTree.append(ShoppingItem(img: UIImage(named: "tree2")!, nam: "Smile Tree", pric: 11.49, desc: "The fancy tree", cat: "Christmas Tree"))
@@ -90,17 +92,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         categories.append(category(img: UIImage(named: "Drinks")!, nam: "Drinks", catCon: drinks))
         categories.append(category(img: UIImage(named: "Christmas Trees")!, nam: "Christmas Trees", catCon: xMasTree))
         categories.append(category(img: UIImage(named: "Lights")!, nam: "Lights", catCon: lights))
-        
+
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return categories.count
     }
-    
+
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CategoryCell
-        
+
         cell.imageCell.image = categories[indexPath.row].categoryImage
 
         if (indexPath.row == 1){
@@ -111,7 +113,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if (indexPath.row == 1){
             self.performSegue(withIdentifier: "toCart", sender: indexPath)
@@ -123,20 +125,28 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             self.performSegue(withIdentifier: "toTableView", sender: indexPath)
         }
     }
-    
-    
+
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let selectedIndexPath = sender as? NSIndexPath
                 if let destination = segue.destination as? ShoppingItemsTVC {
                     destination.cart = cart
+                    destination.section = categories[(selectedIndexPath?.row)!].categoryName
                     destination.delegate = self
                     destination.items = categories[(selectedIndexPath?.row)!].categoryContents
-        }// end of prepare for segue
-        
-    }
-    
-    func finishPassing(cart1: Array<ShoppingItem>?) {
+                    destination.cartDict = cartDictionary
+                }
+        if let destination = segue.destination as? CartTVC {
+            destination.cart = cart
+        }
+
+    }// end of prepare for segue
+
+    func finishPassing(cart1: Array<ShoppingItem>?, cartDict:[String: Array<ShoppingItem>]?) {
         cart = cart1!
+        cartDictionary = cartDict!
+        for (key,value) in cartDict! {
+        }
         self.collectionView.reloadData()
     }
     

@@ -8,35 +8,38 @@
 
 import UIKit
 protocol ShoppingItemsTVCDelegate {
-    func finishPassing(cart1: Array<ShoppingItem>?)
+    func finishPassing(cart1: Array<ShoppingItem>?, cartDict: [String: Array<ShoppingItem>]?)
 }
 
 class ShoppingItemsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var cartCount: UILabel!
-    @IBOutlet weak var cartBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var items : Array<ShoppingItem> = []
     var cart: Array<ShoppingItem> = []
+    var curCart: Array<ShoppingItem> = []
+    var section: String?
     var delegate: ShoppingItemsTVCDelegate?
+    var cartDict: [String: Array<ShoppingItem>] = [:]
+    var carti: Array<cartItem> = []
 
-    
+    struct cartItem{
+        var citemName:String
+        var quantity:Int
+    }
+
+
+
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
         cartCount.text="\(cart.count)"
         super.viewDidLoad()
-        }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        print("\(String(describing: section)): current section")
     }
-    
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("\(items.count) :item Count")
         return items.count
     }
     
@@ -50,25 +53,49 @@ class ShoppingItemsTVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.itemDesc.numberOfLines = 3
         cell.yourobj = {
             self.cart.append(self.items[indexPath.row])
-            print("\(self.cart.count) here")
-            self.delegate?.finishPassing(cart1: self.cart)
+            self.curCart.append(self.items[indexPath.row])
+            self.dooo()
+
+            self.delegate?.finishPassing(cart1: self.cart, cartDict: self.cartDict)
+
+
+            print("\(self.cart.count) : num of items in cart")
             self.cartCount.text = "\(self.cart.count)"
         }
         
 
         return cell
     }
- 
-    @IBAction func onClickCart(_ sender: UIButton) {
-        performSegue(withIdentifier: "cartToCart", sender: nil)
+
+
+    @IBAction func onTap(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "cartVC", sender: self)
+        print("som")
     }
-    
+
+    func dooo(){
+        if (!cartDict.keys.contains(section!)) {
+            cartDict[section!] = curCart
+            print("new section")
+        }
+        else {
+            cartDict[section!]!.append(curCart[curCart.endIndex - 1])
+            print("same section")
+
+        }
+
+
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? CartTVC{
+        if let destination = segue.destination as? CartTVC {
             destination.cart = cart
+            destination.itemsDict = cartDict
         }
-    }
+    }// end of prepare for segue
+    
+    
+    
 
     /*
     // MARK: - Navigation
