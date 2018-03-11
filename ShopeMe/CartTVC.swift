@@ -81,7 +81,6 @@ class CartTVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                 price=item.itemPrice
             }
         }
-
         total = total + (price * Double(counts[temp2[indexPath.row]]!))
         quant = quant + (counts[temp2[indexPath.row]]!)
 
@@ -89,7 +88,7 @@ class CartTVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         cell.quantity.text = "\(counts[temp2[indexPath.row]]!)"
         cell.subTotal.text = "$\(price * Double(counts[temp2[indexPath.row]]!))"
         totalCost.text="$\(total)"
-        totalQuant.text="\(quant)"
+        totalQuant.text="\(cart.count)"
         return cell
     }
     @IBAction func onDeleteClick(_ sender: UIButton) {
@@ -99,90 +98,15 @@ class CartTVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         {
             NSLog("index path.section ==%ld", Int(clickedButtonIndexPath!.section))
             NSLog("index path.row ==%ld", Int(clickedButtonIndexPath!.row))
-            itemsDict[sec[clickedButtonIndexPath!.section]]?.remove(at: clickedButtonIndexPath!.row)
+            //itemsDict[sec[clickedButtonIndexPath!.section]]?.remove(at: clickedButtonIndexPath!.row)
         }
-        tableView.reloadData()
+//       tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         print("\(sec[section]): section name")
         return sec[section]
     }
-    
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        print("\(itemsDict.count): num of section")
-//        return itemsDict.count
-//    }
-//
-//    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-//        var itemNam = Array<String>()
-//        for i in itemsDict[sec[section]]! {
-//            itemNam.append(i.itemName)
-//        }
-//        print("\(itemsDict[sec[section]]!.count): num of rows per section")
-//        return itemsDict[sec[section]]!.count
-//    }
-//
-//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cartCCELL") as! CartCell
-////        var itemNam = Array<String>()
-////        for i in itemsDict[sec[indexPath.section]]! {
-////            itemNam.append(i.itemName)
-////        }
-//
-//
-//        cell.cCell.text = "test"
-//        //Array(Set(itemNam))[indexPath.row]//itemsDict[sec[indexPath.section]]![indexPath.row].itemName
-////        cell.subTotal.text = "$00.00"
-////        cell.Quantify.text = "9"
-//
-//
-//        //cell.cCell.text = itemsDict[sec[indexPath.section]]![indexPath.row].itemName
-////        print(itemsDict[sec[indexPath.section]]![indexPath.row].itemName)
-//        return cell;
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        print("not out")
-//        print(sec[section])
-//        return sec[section]
-//    }
-//
-////    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-////        let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell") as! CartCell
-////        cell.itemName.text = cart[indexPath.row].itemName
-//////        cell.subTotal.text = "$ \(cart[indexPath.row].itemPrice * Double(counts[cart[indexPath.row].itemName]!) )"
-//////        cell.count.text = "\(String(describing: counts[cart[indexPath.row].itemName]))"
-////        print("making")
-////        return cell
-////    }
-//
-//
-//
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-////    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-////        // Get the new view controller using segue.destinationViewController.
-////        // Pass the selected object to the new view controller.
-////    }
 
     func createAlert (title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -191,10 +115,19 @@ class CartTVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         alert.addAction(UIAlertAction(title: "Place Order", style: UIAlertActionStyle.default, handler: { (action) -> Void in
             // Get 1st TextField's text
             self.Orders.append( Order(quan: self.quant, pri: self.total, day: Date()))
-            print(self.Orders.description)
 
             print(self.Orders.description, "print orders being sent")
             self.cartDelegate?.finishPassCart(cart1: self.cart, cartDict: self.itemsDict, orders: self.Orders)
+            self.performSegue(withIdentifier: "unWindly", sender: self)
+
+            self.itemsDict.removeAll()
+            self.cart.removeAll()
+            self.total=0.0
+            self.quant=0
+            self.totalCost.text="$\(self.total)"
+            self.totalQuant.text="\(self.quant)"
+            self.tableView.reloadData()
+            print(self.cart.count, "should be 0")
         }))
 
         self.present(alert, animated: true, completion: nil)

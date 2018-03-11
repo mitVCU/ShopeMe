@@ -86,7 +86,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         lights.append(ShoppingItem(img: UIImage(named: "light5")!, nam: "Simple Tree", pric: 11.49, desc: "The no fancy colors on this tree", cat: "Lights"))
         ////////////////////////////
         categories.append(category(img: UIImage(named: "Recent Orders")!, nam: "Recent Orders", catCon: recentOrders))
-        categories.append(category(img: UIImage(named: "Cart")!, nam: "Cart(\(cart.count)", catCon: cart))
+        categories.append(category(img: UIImage(named: "Cart")!, nam: "Cart(\(cart.count))", catCon: cart))
         categories.append(category(img: UIImage(named: "Decorations")!, nam: "Decorations", catCon: decorations))
         categories.append(category(img: UIImage(named: "Desserts")!, nam: "Desserts", catCon: Desserts))
         categories.append(category(img: UIImage(named: "Clothing")!, nam: "Clothing", catCon: clothing))
@@ -147,6 +147,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         if let destination = segue.destination as? OrdersTVC {
             destination.Orders = orderss
         }
+        if let destination = segue.destination as? ManagerViewController{
+            destination.categories = categories
+            destination.candy = candy
+            destination.clothing = clothing
+            destination.decorations = decorations
+            destination.Desserts = Desserts
+            destination.drinks = drinks
+            destination.lights = lights
+            destination.presents = presents
+            destination.xMasTree = xMasTree
+        }
+        
 
     }// end of prepare for segue
 
@@ -154,6 +166,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cart = cart1!
         cartDictionary = cartDict!
         self.collectionView.reloadData()
+        print("here in first delegate")
     }
 
     func finishPassCart(cart1: Array<ShoppingItem>?, cartDict: [String: Array<ShoppingItem>]?, orders: Array<Order>?) {
@@ -165,6 +178,28 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     @IBAction func unWindSegue(_ sender: UIStoryboardSegue) {
         print("this is unwinding")
+        guard let cartVC = sender.source as? CartTVC else {return}
+        orderss.append(contentsOf:cartVC.Orders)
+        cart.removeAll()
+        cartDictionary.removeAll()
+        print(cart.description)
     }
+    @IBAction func unWindFromManage(_ sender: UIStoryboardSegue){
+        guard let manageVC = sender.source as? ManagerViewController else {return}
+        print(categories.count," :before")
+        categories = manageVC.categories
+        print(categories.count, " :after")
+        collectionView.reloadData()
+    }
+    
+    @IBAction func onClickManageR(_ sender: UIButton) {
+        performSegue(withIdentifier: "toManage", sender: self)
+    }
+    
+    @IBAction func onClickMangagL(_ sender: UIButton) {
+        performSegue(withIdentifier: "toManage", sender: self)
+    }
+    
+    
 }//end of ViewController
 
