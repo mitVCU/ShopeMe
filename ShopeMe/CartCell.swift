@@ -16,13 +16,10 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var addItem: UIButton!
     @IBOutlet weak var deleteItem: UIButton!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    
-
     
 }

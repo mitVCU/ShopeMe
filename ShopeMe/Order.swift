@@ -11,8 +11,13 @@ import Foundation
 import UIKit
 
 class Order {
+    var count:Int
+    var price:Double
+    var date:Date
     
-    init() {
-       
+    init(quan:Int, pri:Double, day:Date) {
+        count = quan
+        price = pri
+        date = day
     }
 }

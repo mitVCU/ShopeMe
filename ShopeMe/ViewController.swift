@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ShoppingItemsTVCDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,
+        ShoppingItemsTVCDelegate, CartTVCDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -22,6 +23,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var drinks = [ShoppingItem]()
     var xMasTree = [ShoppingItem]()
     var lights = [ShoppingItem]()
+
+    var orderss = [Order]()
 
     var categories = [category]()
     var cartDictionary: [String: Array<ShoppingItem>] = [:]
@@ -129,15 +132,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let selectedIndexPath = sender as? NSIndexPath
-                if let destination = segue.destination as? ShoppingItemsTVC {
-                    destination.cart = cart
-                    destination.section = categories[(selectedIndexPath?.row)!].categoryName
-                    destination.delegate = self
-                    destination.items = categories[(selectedIndexPath?.row)!].categoryContents
-                    destination.cartDict = cartDictionary
-                }
+        if let destination = segue.destination as? ShoppingItemsTVC {
+            destination.cart = cart
+            destination.section = categories[(selectedIndexPath?.row)!].categoryName
+            destination.delegate = self
+            destination.items = categories[(selectedIndexPath?.row)!].categoryContents
+            destination.cartDict = cartDictionary
+        }
         if let destination = segue.destination as? CartTVC {
             destination.cart = cart
+            destination.itemsDict = cartDictionary
+            destination.cartDelegate = self
+        }
+        if let destination = segue.destination as? OrdersTVC {
+            destination.Orders = orderss
         }
 
     }// end of prepare for segue
@@ -145,10 +153,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func finishPassing(cart1: Array<ShoppingItem>?, cartDict:[String: Array<ShoppingItem>]?) {
         cart = cart1!
         cartDictionary = cartDict!
-        for (key,value) in cartDict! {
-        }
         self.collectionView.reloadData()
     }
-    
+
+    func finishPassCart(cart1: Array<ShoppingItem>?, cartDict: [String: Array<ShoppingItem>]?, orders: Array<Order>?) {
+        cart = cart1!
+        cartDictionary = cartDict!
+        orderss = orders!
+        print ("orders: in: ", orderss)
+    }
+
+    @IBAction func unWindSegue(_ sender: UIStoryboardSegue) {
+        print("this is unwinding")
+    }
 }//end of ViewController
 
