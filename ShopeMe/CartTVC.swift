@@ -45,8 +45,29 @@ class CartTVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell") as! CartCell
-        
-        
+
+        var temp = Array<String>()
+        var counts: [String: Int] = [:]
+        var price = Double()
+
+        for item in (itemsDict[sec[indexPath.section]])!{
+            temp.append(item.itemName)
+            counts[item.itemName] = (counts[item.itemName] ?? 0) + 1
+        }
+        let temp2 = Array(Set(temp))
+
+        for item in (itemsDict[sec[indexPath.section]])! {
+            if item.itemName == temp2[indexPath.row]{
+                price=item.itemPrice
+            }
+        }
+
+            //  var subTot = itemsDict[sec[indexPath.section]]![indexPath.row].itemPrice * Double(counts[temp2[indexPath.row]]!)
+        cell.itemName.text = temp2[indexPath.row]
+        cell.quantity.text = "\(counts[temp2[indexPath.row]]!)"
+        cell.subTotal.text = "$\(price * Double(counts[temp2[indexPath.row]]!))"
+
+
         return cell
     }
     

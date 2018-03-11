@@ -344,7 +344,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R1f-IJ-S5k">
-                                <rect key="frame" x="0.0" y="58" width="320" height="466"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="341"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cartCell" rowHeight="100" id="Hig-he-28g" customClass="CartCell" customModule="ShopeMe" customModuleProvider="target">
@@ -424,13 +424,29 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkY-Kz-LB3">
+                                <rect key="frame" x="239" y="64" width="65" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SubTotal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWg-Ri-ccE">
+                                <rect key="frame" x="165.5" y="64" width="65.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ZQ4-Z7-Pew" firstAttribute="trailing" secondItem="YkY-Kz-LB3" secondAttribute="trailing" constant="16" id="0PO-eU-Uyl"/>
                             <constraint firstItem="R1f-IJ-S5k" firstAttribute="trailing" secondItem="ZQ4-Z7-Pew" secondAttribute="trailing" id="8Ip-5H-ufo"/>
-                            <constraint firstItem="R1f-IJ-S5k" firstAttribute="top" secondItem="9nx-Tn-n4g" secondAttribute="top" constant="58" id="Wja-CT-RvJ"/>
+                            <constraint firstItem="YkY-Kz-LB3" firstAttribute="top" secondItem="ZQ4-Z7-Pew" secondAttribute="top" id="AUj-Kc-J8Z"/>
+                            <constraint firstItem="mWg-Ri-ccE" firstAttribute="top" secondItem="ZQ4-Z7-Pew" secondAttribute="top" id="Ik7-Ze-iyH"/>
+                            <constraint firstItem="YkY-Kz-LB3" firstAttribute="leading" secondItem="mWg-Ri-ccE" secondAttribute="trailing" constant="8" id="Jyq-9K-8PN"/>
+                            <constraint firstItem="ZQ4-Z7-Pew" firstAttribute="bottom" secondItem="R1f-IJ-S5k" secondAttribute="bottom" constant="119" id="crc-7D-a76"/>
                             <constraint firstItem="R1f-IJ-S5k" firstAttribute="leading" secondItem="ZQ4-Z7-Pew" secondAttribute="leading" id="dzK-bN-NJe"/>
-                            <constraint firstItem="ZQ4-Z7-Pew" firstAttribute="bottom" secondItem="R1f-IJ-S5k" secondAttribute="bottom" id="h0q-Vf-tlj"/>
+                            <constraint firstItem="R1f-IJ-S5k" firstAttribute="top" secondItem="ZQ4-Z7-Pew" secondAttribute="top" id="vrK-MR-8pq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZQ4-Z7-Pew"/>
                     </view>
